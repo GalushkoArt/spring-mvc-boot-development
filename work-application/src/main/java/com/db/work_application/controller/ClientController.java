@@ -22,7 +22,11 @@ public class ClientController {
         return service.getAllClients();
     }
 
-    public Client createClient(long id, String firstName, String lastName) {
-        return service.createClient(id, firstName, lastName);
+    public Client createClient(String firstName, String lastName) {
+        return service.createClient(firstName, lastName);
+    }
+
+    public List<Client> getClientsByFirstNameAndLastName(String firstName, String lastName) {
+        return service.getClientsByFirstNameAndLastName(firstName, lastName);
     }
 }

@@ -25,9 +25,14 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client createClient(long id, String firstName, String lastName) {
-        Client client = new Client(id, firstName, lastName);
+    public Client createClient(String firstName, String lastName) {
+        Client client = new Client(repository.maxId() + 1, firstName, lastName);
         repository.saveClient(client);
         return client;
+    }
+
+    @Override
+    public List<Client> getClientsByFirstNameAndLastName(String firstName, String lastName) {
+        return repository.getClientsByFirstNameAndLastName(firstName, lastName);
     }
 }
