@@ -1,0 +1,2 @@
+GET http://localhost:8080/spring-mvc-webapp/api/clients/1
+Accept: application/json
