@@ -7,6 +7,6 @@ import java.util.List;
 public interface ClientService {
     Client findById(long id);
     List<Client> getAllClients();
-    Client createClient(String firstName, String lastName);
+    Client createClient(Client client);
     List<Client> getClientsByFirstNameAndLastName(String firstName, String lastName);
 }

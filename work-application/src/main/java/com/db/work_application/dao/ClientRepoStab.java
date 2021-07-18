@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ClientRepoStab implements ClientRepo {
-    public Map<Long, Client> clientsMap = new HashMap<>();
+    private final Map<Long, Client> clientsMap = new HashMap<>();
 
     @Override
     public Client findById(long id) {

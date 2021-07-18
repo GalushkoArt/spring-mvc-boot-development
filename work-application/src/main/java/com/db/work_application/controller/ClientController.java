@@ -18,7 +18,9 @@ public class ClientController {
 
     @GetMapping("/{id}")
     public Client findById(@PathVariable long id) {
-        return service.findById(id);
+        Client client = service.findById(id);
+        if (client == null) throw new ClientNotFoundException(id);
+        return client;
     }
 
     @GetMapping
@@ -28,12 +30,12 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Client createClient(@RequestBody String firstName, @RequestBody String lastName) {
-        return service.createClient(firstName, lastName);
+    public Client createClient(@RequestBody Client client) {
+        return service.createClient(client);
     }
 
-    @GetMapping("/get-by-first-name-last-name?firstName={firstName}&lastName={lastName}")
-    public @ResponseBody List<Client> getClientsByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
+    @GetMapping("/get-by-first-name-last-name/{firstName}/{lastName}")
+    public List<Client> getClientsByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
         return service.getClientsByFirstNameAndLastName(firstName, lastName);
     }
 }

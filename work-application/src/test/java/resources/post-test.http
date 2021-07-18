@@ -1,4 +1,7 @@
 POST http://localhost:8080/spring-mvc-webapp/api/clients
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-firstName=Aleksander&lastName=Ivanov
+{
+  "firstName": "Peter",
+  "lastName": "Danillin"
+}

@@ -1,12 +1,14 @@
 package com.db.work_application.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import static com.db.work_application.utils.ObjectUtil.asJsonString;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Client {
     private long id;
     private String firstName;
@@ -14,8 +16,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client id: " + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'';
+        return asJsonString(this);
     }
 }
