@@ -1,2 +1,6 @@
 server:
   port : 8085
+
+logging.level:
+  org.springframework: WARN
+  com.db.work_application: INFO

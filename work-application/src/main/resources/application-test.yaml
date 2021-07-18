@@ -1,0 +1,7 @@
+server:
+  port : 11571
+
+debug: true
+logging.level:
+  org.springframework: DEBUG
+  com.db.work_application: DEBUG
