@@ -1,32 +1,28 @@
 package com.db.work_application;
 
-import com.db.work_application.config.JavaConfig;
 import com.db.work_application.dao.ClientRepo;
 import com.db.work_application.model.Client;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringJUnitWebConfig(classes = JavaConfig.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class ClientTest {
+    @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ClientRepo repo;
-
-    @BeforeEach
-    public void setUp(WebApplicationContext context) {
-        mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-    }
 
     @Test
     public void getAllClientsWhenNoEntriesTest() throws Exception {
@@ -94,5 +90,23 @@ public class ClientTest {
 
         repo.removeById(1L);
         repo.removeById(2L);
+    }
+
+    @Test
+    public void getClientsByFirstNameLastNameTest() throws Exception {
+        Client client1 = Client.builder().id(1).firstName("Peter").lastName("Danillin").build();
+        Client client2 = Client.builder().id(2).firstName("Peter").lastName("Danillin").build();
+        Client client3 = Client.builder().id(3).firstName("Peter").lastName("Sashov").build();
+        repo.saveClient(client1);
+        repo.saveClient(client2);
+        repo.saveClient(client3);
+
+        mockMvc.perform(get("/api/clients/get-by-first-name-last-name/Peter/Danillin"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(List.of(client1, client2).toString()));
+
+        repo.removeById(1L);
+        repo.removeById(2L);
+        repo.removeById(3L);
     }
 }

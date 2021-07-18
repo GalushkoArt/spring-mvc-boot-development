@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client createClient(Client client) {
         if (client.getId() == 0) client.setId(repository.maxId() + 1);
-        assert repository.saveClient(client) : "Can't save this client";
+        repository.saveClient(client);
         return client;
     }
 

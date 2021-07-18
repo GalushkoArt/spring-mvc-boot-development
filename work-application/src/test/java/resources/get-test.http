@@ -1,2 +1,12 @@
-GET http://localhost:8080/spring-mvc-webapp/api/clients
+GET http://localhost:8085/api/clients
+Accept: application/json
+
+###
+
+GET http://localhost:8085/api/clients/1
+Accept: application/json
+
+###
+
+GET http://localhost:8085/api/clients/get-by-first-name-last-name/Vasya/Danillin
 Accept: application/json
