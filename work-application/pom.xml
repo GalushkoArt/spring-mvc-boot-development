@@ -26,6 +26,8 @@
         <lombok-version>1.18.20</lombok-version>
         <jackson-version>2.12.3</jackson-version>
         <servlet-api-version>4.0.1</servlet-api-version>
+        <hibernate-validator-version>6.0.13.Final</hibernate-validator-version>
+        <javaxel-version>3.0.0</javaxel-version>
 
         <junit-version>5.7.2</junit-version>
         <jsonassert-version>1.5.0</jsonassert-version>
@@ -162,6 +164,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>${javaxel-version}</version>
         </dependency>
 
 <!--        Test dependencies       -->

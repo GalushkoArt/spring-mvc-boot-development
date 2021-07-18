@@ -2,6 +2,6 @@ POST http://localhost:8080/spring-mvc-webapp/api/clients
 Content-Type: application/json
 
 {
-  "firstName": "Peter",
+  "firstName": "",
   "lastName": "Danillin"
 }
